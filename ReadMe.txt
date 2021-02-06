@@ -1,3 +1,5 @@
+To generate Solution run .bat file.
+
 Right-click to spawn flower
 Left-Click to attack
 
