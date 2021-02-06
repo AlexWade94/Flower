@@ -73,8 +73,8 @@ bool Game::OnUserUpdate(float fElapsedTime)
 		snekMoveCounter			+= fElapsedTime;
 		snekAppearCounter		+= fElapsedTime;
 		snekGrowCounter			+= fElapsedTime;
-		snekAppearSlowerCounter += fElapsedTime;
-		flowerIncomeCounter     += fElapsedTime;
+		snekAppearSlowerCounter 	+= fElapsedTime;
+		flowerIncomeCounter     	+= fElapsedTime;
 	}
 
 	//if you lose all of your flowers Game Over
@@ -223,7 +223,7 @@ void Game::Restart()
 	snekMoveCounter				= 0.0f;
 	snekAppearCounter			= 0.0f;
 	snekGrowCounter 			= 0.0f;
-	snekAppearSlowerCounter 	= 0.0f;
+	snekAppearSlowerCounter 		= 0.0f;
 	flowerIncomeCounter			= 0.0f;
 	speedupCounter				= 0.0f;
 }
@@ -238,7 +238,7 @@ void Game::Draw()
 	//Draw game over screen
 	else if(gamestarted && flowersCounter == 0)
 	{
-	DrawStringDecal({ (float)ScreenWidth() / 3,(float)ScreenHeight() / 2 }, "You lose! Place flower to start new game");
+		DrawStringDecal({ (float)ScreenWidth() / 3,(float)ScreenHeight() / 2 }, "You lose! Place flower to start new game");
 	}
 
 	for (auto& snek : sneks)
