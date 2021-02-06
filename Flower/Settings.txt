@@ -1,0 +1,11 @@
+[Screen Resolution]
+840 620
+
+[Tile Size]
+15
+
+[Board Dimensions]
+30 20
+
+[Starting Budget]
+150
