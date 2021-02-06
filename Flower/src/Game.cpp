@@ -85,10 +85,10 @@ bool Game::OnUserUpdate(float fElapsedTime)
 	}
 
 	//Every fixed period of time new snakes will appear less friquenly
-	if (snekAppearSlowerCounter > snekAppearSlowerPeriod)
+	if (snekAppearSlowerCounter >= snekAppearSlowerPeriod)
 	{
 		snekAppearPeriod *= snekAppearSlowerCoef;
-		snekAppearSlowerCounter = 0.0f;
+		snekAppearSlowerCounter -= snekAppearSlowerPeriod;
 	}
 
 	//if flower was eaten all snakes move faster, if they ate 2 flowers the counter gets nulified and they get additional time
@@ -96,19 +96,19 @@ bool Game::OnUserUpdate(float fElapsedTime)
 	{
 		speedupCounter += fElapsedTime;
 
-		if (speedupCounter > speedupPeriod)
+		if (speedupCounter >= speedupPeriod)
 		{
 			speedup = false;
 			snekMovePeriod = snekMoveNormal;
-			speedupCounter = 0.0f;
+			speedupCounter -= speedupPeriod;
 		}
 	}
 
 	//Flowers give you money every fixed period based on their amount * how many you get per 1 flower
-	if (flowerIncomeCounter > flowerIncomePeriod)
+	if (flowerIncomeCounter >= flowerIncomePeriod)
 	{
 		budget += flowersCounter * flowerIncome;
-		flowerIncomeCounter = 0;
+		flowerIncomeCounter -= flowerIncomePeriod;
 	}
 
 	//If there is only 1 flower, snakes can grow up to 10 segments
@@ -130,7 +130,7 @@ bool Game::OnUserUpdate(float fElapsedTime)
 			}
 			
 		}
-		snekGrowCounter = 0.0f;
+		snekGrowCounter -= snekGrowPeriod;
 	}
 
 	//Every fixed period of time a new snake appears if there is at least 1 flower and if amount of snakes is not maxsized yet
@@ -139,7 +139,7 @@ bool Game::OnUserUpdate(float fElapsedTime)
 		std::uniform_int_distribution<int> xDist(0, settings.GetBoardWidth()-1);
 		std::uniform_int_distribution<int> yDist(0, settings.GetBoardHeight()-1);
 		sneks.push_back(Snake({ xDist(rng), yDist(rng) }));
-		snekAppearCounter = 0.0f;
+		snekAppearCounter -= snekAppearPeriod;
 	}
 
 	//moves the snake by fixtime step
